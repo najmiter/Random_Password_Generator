@@ -1,14 +1,19 @@
-const btn_pwdGenerator  = document.getElementById('btn_pwdGenerator');
-const btn_copyPwd       = document.getElementById('btn_copyPwd');
-const password          = document.getElementById('password');
-const pwd_lengths       = document.getElementById('pwd_lengths');
+const btn_pwdGenerator = document.getElementById('btn_pwdGenerator');
+const btn_copyPwd = document.getElementById('btn_copyPwd');
+const password = document.getElementById('password');
+const pwd_lengths = document.getElementById('pwd_lengths');
 
 let actual_password = '';
 
-const MIN_LENGTH        = 12;
-const MAX_LENGTH        = 28;
+const MIN_LENGTH = 12;
+const MAX_LENGTH = 28;
 
-for (let i = MIN_LENGTH; i < MAX_LENGTH; i++) {
+const copy_msg = {
+      success: 'Password copied successfully ✅',
+      failure: 'Nothing to copy'
+};
+
+for (let i = MIN_LENGTH; i <= MAX_LENGTH; i++) {
       const opt = document.createElement('option');
       opt.setAttribute('value', i);
       opt.innerText = i;
@@ -40,14 +45,12 @@ btn_pwdGenerator.addEventListener('click', () => {
 });
 
 btn_copyPwd.addEventListener('click', () => {
-      const msg_success = document.createElement('div');
-      msg_success.setAttribute('id', 'msg-success')
-      document.getElementById('main').appendChild(msg_success);
-      
+      const msg_success = document.getElementById('msg-success');
+
       if (actual_password.length === 0) {
-            msg_success.innerText = 'Nothing to copy';
+            msg_success.innerText = copy_msg.failure;
       } else {
-            msg_success.innerText = 'Password copied successfully ✅';
+            msg_success.innerText = copy_msg.success;
             password.select();
             const pwd = document.getSelection().toString();
             navigator.clipboard.writeText(pwd);
