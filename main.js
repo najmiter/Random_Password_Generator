@@ -24,7 +24,7 @@ const chars = [
       'qwertyuiopasdfghjklzxcvbnm',
       'ASDFGHJKLZXCVBNMQWERTYUIOP',
       '1234567890',
-      `,.<>/?'";:[{\\|=+-_(*&^%$#@!~)}]`
+      `/?;:|=+-_*&^%$#@!` // add other characters if needed
 ];
 
 const get_random_password = (length) => {
